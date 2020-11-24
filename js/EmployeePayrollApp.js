@@ -69,6 +69,7 @@ const createEmployeePayroll = () => {
   } catch (e) {
     setTextValue(".name-error", e);
   }
+  /// For the check-boxes or button inputs we use pop to extract the element from the returned value
   employeePayrollData.profilePic = getSelectedValues("[name=profile]").pop();
   employeePayrollData.gender = getSelectedValues("[name=gender]").pop();
   employeePayrollData.department = getSelectedValues("[name=department]");
@@ -105,50 +106,55 @@ const getInputElementValue = (id) => {
   return value;
 };
 /// Method to parse the input data to the lightweight json type and then push the data to the browser local storage
-function createAndUpdateStorage(employeePayrollData){
-
+function createAndUpdateStorage(employeePayrollData) {
   /// EmployeePayrollList will be the array of object parsed to JSON format
-  let employeePayrollList= JSON.parse(localStorage.getItem("EmployeePayrollList"));
+  let employeePayrollList = JSON.parse(
+    localStorage.getItem("EmployeePayrollList")
+  );
   /// If the employeePayrollData list is not empty i.e. already created then push the incoming data onto the local storage
-  if(employeePayrollList!=undefined)
-  {
-      employeePayrollList.push(employeePayrollData);
-  }
-  else
-  {
-      employeePayrollList=[employeePayrollData];
+  if (employeePayrollList != undefined) {
+    employeePayrollList.push(employeePayrollData);
+  } else {
+    employeePayrollList = [employeePayrollData];
   }
   /// Displaying the alert popup for the user one more time before the local storage has been populated
   alert(employeePayrollList.toString());
   /// Push the data to the local storage
-  localStorage.setItem("EmployeePayrollList",JSON.stringify(employeePayrollList));
+  localStorage.setItem(
+    "EmployeePayrollList",
+    JSON.stringify(employeePayrollList)
+  );
 }
 
 /// UC5 -- Defining the method to reset the form once the reset button is pressed
 /// Will be called once the reset button is clicked
-const resetForm=() =>
-{
+const resetForm = () => {
   /// Either set to empty or unset the values
-  setTextValue('#name','');
-  unsetSelectedValues('[name=profile]');
-  unsetSelectedValues('[name=gender]');
-  unsetSelectedValues('[name=department]');
-  setTextValue('#salary','');
-  setTextValue('#notes','');
-  unsetTextValue('#day');
-  unsetTextValue('#month');
-  unsetTextValue('#year');
-}
+  setTextValue("#name", "");
+  unsetSelectedValues("[name=profile]");
+  unsetSelectedValues("[name=gender]");
+  unsetSelectedValues("[name=department]");
+  setValue("#salary", "");
+  setValue("#notes", "");
+  setValue("#day", 1);
+  setValue("#month", "January");
+  setValue("#year", "2018");
+};
 /// Method defined to unset the property value changed in the base html and set the select status to be false
-const unsetSelectedValues= (propertyValue)=>{
-  let allItems= document.querySelectorAll(propertyValue);
-  allItems.forEach(items=>{
-      items.checked=false;
+const unsetSelectedValues = (propertyValue) => {
+  let allItems = document.querySelectorAll(propertyValue);
+  allItems.forEach((items) => {
+    items.checked = false;
   });
-}
+};
 /// Either set the element value with the one passed in as value
-const setTextValue=(id,value)=>
-{
-  const element= document.querySelector(id);
-  element.textContent=value;
-} 
+const setTextValue = (id, value) => {
+  const element = document.querySelector(id);
+  element.textContent = value;
+};
+/// Using this method to update the element value in the document with the one passed in as value
+/// will allocate the reset value to the element by the value passed
+const setValue = (id, value) => {
+  const element = document.querySelector(id);
+  element.value = value;
+};
