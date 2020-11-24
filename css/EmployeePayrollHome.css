@@ -37,3 +37,49 @@ body {
   * {
     box-sizing: border-box;
   }
+  /* UC2 -- Creating the style presentation for the add user button and the secondary header section */
+.add-button{
+    font-size: 21px;
+    font-family: Roboto;
+    color: #ffffff;
+    font-weight: 400;
+    min-width: 145px;
+    padding: 9px 9px;
+    cursor: pointer;
+    background: #82a70c 0% 0% no-repeat padding-box;
+    border: 2px solid #969696;
+    border-radius: 9px;
+    text-decoration: none;
+}
+.main-content{
+    display:flex;
+    flex-direction:column;
+    min-height:calc(100vh-80px);
+    background-color:#f7f7f7;
+    padding: 30px 0 10px;
+    box-sizing:border-box;
+}
+.header-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+    padding: 25px;
+}
+.emp-detail-text{
+    font:normal normal bold 24px Roboto;
+    letter-spacing:0px;
+    color:#42515f;
+    opacity:1;
+}
+.emp-count{
+    background-color: #82a70c;
+    color: #ffffff;
+    border-radius: 32%;
+    font-size: 17px;
+    width: 30px;
+    text-align: center;
+    display: inLine-block;
+} 
