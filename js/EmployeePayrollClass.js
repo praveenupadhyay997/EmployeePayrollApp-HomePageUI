@@ -18,7 +18,7 @@ class EmployeePayRoll {
   }
   /// Defining the setter with the regex so as to match the input by the user
   set name(name) {
-    let nameRegex = RegExp("^[A-Z]{1}[a-zA-Z]{2,}$");
+    let nameRegex = RegExp("^[A-Z]{1}[a-zA-Z ]{2,}$");
     if (nameRegex.test(name)) this._name = name;
     else throw "Incorect Name!!!";
   }
@@ -58,14 +58,13 @@ class EmployeePayRoll {
     this._note = note;
   }
   /// Defining the validation for the start date whether it's a future date or not
+  /// Modifying the non-required validation for the date in range of 30 days so as to increase the limit of dates can be entered
   get startDate() { return this._startDate; }
   set startDate(startDate) { 
    let now = new Date();
    if (startDate > now) 
    throw `Start Date is a Future Date!!!!`;
    var diff = Math.abs(now.getTime() - startDate.getTime());
-   if (diff / (1000 * 60 * 60 * 24) > 30) 
-     throw `Start Date is beyond 30 Days!!!!`;
    this._startDate = startDate; 
  }
 
